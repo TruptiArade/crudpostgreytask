@@ -4,6 +4,7 @@ import com.crudpostgrey.dto.EmployeeDTO;
 import com.crudpostgrey.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,5 +23,11 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity,  Long>
         }
         return salaries.get(1); // Return the second highest salary
     }
+
+    // Custom query for salary range search
+    @Query("SELECT e FROM EmployeeEntity e WHERE e.salary BETWEEN :minSalary AND :maxSalary")
+    List<EmployeeEntity> findEmployeesBySalaryRange(
+            @Param("minSalary") Double minSalary,
+            @Param("maxSalary") Double maxSalary);
 
 }

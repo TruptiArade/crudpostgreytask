@@ -1,6 +1,7 @@
 package com.crudpostgrey.service;
 
 import com.crudpostgrey.dto.EmployeeDTO;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface IEmployeeService {
 
 
     Double getSecondHighestSalary();
+
+    List<EmployeeDTO> searchBySalaryRange(@Param("minSalary") double minSalary, @Param("maxSalary") double maxSalary);
 }

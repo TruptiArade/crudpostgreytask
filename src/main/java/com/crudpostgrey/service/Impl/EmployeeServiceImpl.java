@@ -190,7 +190,19 @@ public class EmployeeServiceImpl  implements IEmployeeService
         return employeeRepository.findSecondHighestSalary();
     }
 
+    @Override
+    public List<EmployeeDTO> searchBySalaryRange(double minSalary, double maxSalary) {
+        List<EmployeeEntity> searchSalaryRange = employeeRepository.findEmployeesBySalaryRange((double) minSalary, (double) maxSalary);
 
+        if (searchSalaryRange.isEmpty()) {
+            throw new ResourceNotFoundException("No employees found in salary range: " + minSalary + " - " + maxSalary);
+        }
+
+
+        return searchSalaryRange.stream()
+                .map(e -> modelMapper.map(e, EmployeeDTO.class))
+                .toList();
+    }
 
 
 }

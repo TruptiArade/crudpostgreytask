@@ -61,5 +61,13 @@ public class EmployeeController {
         return ResponseEntity.ok(secondHighestSalary);
     }
 
+    @GetMapping("/search/salary")
+    public ResponseEntity<List<EmployeeDTO>> searchBySalaryRange(
+            @RequestParam double minSalary,
+            @RequestParam double maxSalary) {
+        List<EmployeeDTO> employees = employeeService.searchBySalaryRange(minSalary, maxSalary);
+        return ResponseEntity.ok(employees);
+    }
+
 }
 
