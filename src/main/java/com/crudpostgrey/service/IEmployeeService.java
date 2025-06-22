@@ -12,7 +12,7 @@ public interface IEmployeeService {
     EmployeeDTO fetchEmployeeById(Long empId);
     EmployeeDTO updateEmployee(EmployeeDTO employeeDTO, Long empId);
     EmployeeDTO updatepatchEmployee(EmployeeDTO employeeDTO, Long empId);
-    void deleteEmployeeById(Long empId);
+    //void deleteEmployeeById(Long empId);
 
     // Method to fetch employees with the second highest salary
 
